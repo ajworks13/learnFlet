@@ -10,8 +10,10 @@ def main(page: ft.Page):
 
     new_task = ft.TextField(hint_text="Whats needs to be done?", width=500)
 
+    btn = ft.ElevatedButton("Click me!")
+
     page.add(
-        ft.Row([new_task, ft.ElevatedButton("Add", on_click=add_clicked)]))
+        ft.Row([new_task, btn, ft.ElevatedButton("Add", on_click=add_clicked)]))
 
 
 ft.app(target=main)
