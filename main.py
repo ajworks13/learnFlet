@@ -13,7 +13,7 @@ def main(page: ft.Page):
 
     def plus_click(e):
         txt_number.value = str(int(txt_number.value) + 1)
-        if txt_number.value > "10":
+        if "10" in txt_number.value:
             btn = ft.ElevatedButton("Click me!")
             page.add(btn)
 
