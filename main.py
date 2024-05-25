@@ -2,33 +2,27 @@ import flet as ft
 
 
 def main(page: ft.Page):
-    page.title = "Flet counter example"
-    page.vertical_alignment = ft.MainAxisAlignment.CENTER
-
-    txt_number = ft.TextField(value="0", text_align="right", width=100)
-
-    def minus_click(e):
-        txt_number.value = str(int(txt_number.value) - 1)
+    def button_clicked(e):
+        output_text.value = f"Dropdown value is:  {color_dropdown.value}"
         page.update()
 
-    def plus_click(e):
-        txt_number.value = str(int(txt_number.value) + 1)
-        if "10" in txt_number.value:
-            btn = ft.ElevatedButton("Click me!")
-            page.add(btn)
-
-        page.update()
-
-    page.add(
-        ft.Row(
-            [
-                ft.IconButton(ft.icons.REMOVE, on_click=minus_click),
-                txt_number,
-                ft.IconButton(ft.icons.ADD, on_click=plus_click),
-            ],
-            alignment=ft.MainAxisAlignment.CENTER,
-        )
+    output_text = ft.Text()
+    submit_btn = ft.ElevatedButton(text="Submit", on_click=button_clicked)
+    color_dropdown = ft.Dropdown(
+        width=100,
+        options=[
+            ft.dropdown.Option("Red"),
+            ft.dropdown.Option("Green"),
+            ft.dropdown.Option("Blue"),
+            ft.dropdown.Option("123"),
+            ft.dropdown.Option("fefew"),
+            ft.dropdown.Option("Greeeeeeeeeeeeeeen"),
+            ft.dropdown.Option("rrè"),
+            ft.dropdown.Option("vć"),
+            ft.dropdown.Option("Blue"),
+        ],
     )
+    page.add(color_dropdown, submit_btn, output_text)
 
 
 ft.app(target=main)
