@@ -14,7 +14,7 @@ def main(page: ft.Page):
                     margin=10,
                     padding=10,
                     alignment=ft.alignment.center,
-                    bgcolor=ft.colors.AMBER,
+                    bgcolor=ft.colors.BLUE_100,
                     width=150,
                     height=150,
                     border_radius=10,
