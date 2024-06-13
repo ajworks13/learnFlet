@@ -9,16 +9,32 @@ def main(page: Page) -> None:
     def route_change(e: RouteChangeEvent) -> None:
         page.views.clear()
 
-        if page.route == '/store':
+        # Home
+        page.views.append(
+            View(
+                route='/',
+                controls=[
+                    AppBar(title=Text("Home"), bgcolor='blue'),
+                    Text(value='Home', size=30),
+                    ElevatedButton(text='Go to store',
+                                   on_click=lambda _: page.go('/store'))
+                ],
+                vertical_alignment=MainAxisAlignment.CENTER,
+                horizontal_alignment=CrossAxisAlignment.CENTER,
+                spacing=26
+            )
+        )
 
+        # Store
+        if page.route == '/store':
             page.views.append(
                 View(
                     route='/store',
                     controls=[
-                        AppBar(title=Text("Store"), bgcolor='blue'),
+                        AppBar(title=Text('Store'), bgcolor='blue'),
                         Text(value='Store', size=30),
-                        ElevatedButton(text='Go back',
-                                       on_click=lambda _: page.go('/'))
+                        ElevatedButton(
+                            text='Go back', on_click=lambda _: page.go('/'))
                     ],
                     vertical_alignment=MainAxisAlignment.CENTER,
                     horizontal_alignment=CrossAxisAlignment.CENTER,
