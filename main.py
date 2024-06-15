@@ -8,6 +8,16 @@ def main(page: ft.page):
     page.bgcolor = "#E5B8F4"
     textField = ft.TextField(width=350)
     addBtn = ft.ElevatedButton(text="Add")
+
+    checkBox = ft.Checkbox(value=True)
+    checkBoxText = ft.Text(value="Task 1", width=350, bgcolor="WHITE", size=20)
+
+    taskRow = ft.Row(controls=[
+        checkBox,
+        checkBoxText
+    ],
+        alignment=ft.MainAxisAlignment.START
+    )
     entiresRow = ft.Row(controls=[
         textField,
         addBtn
@@ -15,7 +25,7 @@ def main(page: ft.page):
         alignment=ft.MainAxisAlignment.SPACE_BETWEEN
     )
 
-    page.add(entiresRow)
+    page.add(entiresRow, taskRow)
 
 
 ft.app(target=main)
