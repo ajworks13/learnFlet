@@ -24,7 +24,7 @@ def main(page: ft.page):
     page.title = "Tasking app by aj"
     page.window_width = 500
     page.window_height = 700
-    page.bgcolor = "WHITE"
+    page.bgcolor = "BLACK"
 
 
 ft.app(tartget=main)
