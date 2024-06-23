@@ -27,13 +27,14 @@ class TaskApp(ft.UserControl):
 
 class Task(ft.UserControl):
     def __init__(self, taskName, taskDelete):
-        super().__init__()
+        # super().__init__() debpricated?
         self.taskName = taskName
         self.taskDelete = taskDelete
 
     def build(self):
         self.displayTask = ft.Checkbox(label=self.taskName, value=False)
         self.editName = ft.TextField()
+
         self.displayView = ft.Row(controls=[self.displayTask, ft.Row(controls=[ft.IconButton(ft.icons.CREATE_OUTLINED, on_click=self.editClick),
                                                                                ft.IconButton(ft.icons.DELETE_OUTLINE_OUTLINED, on_click=self.deleteClick)])])
 
@@ -46,6 +47,7 @@ class Task(ft.UserControl):
         self.displayView.visible = False
         self.editView.visible = True
         self.editName.value = self.displayTask.label
+        self.update()
 
     def saveClick(self, e):
         pass
