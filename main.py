@@ -8,10 +8,12 @@ class TaskApp(ft.UserControl):
         self.addBtn = ft.FloatingActionButton(
             icon=ft.icon.ADD, on_click=self.addClick)
 
-        self.task = ft.Column
+        self.task = ft.Column()
         taskRow = ft.Column(controls=[
             ft.Row(controls=[self.textField, self.addBtn])
         ])
+
+        return taskRow
 
     def addClick(self, e):
         pass
@@ -20,11 +22,25 @@ class TaskApp(ft.UserControl):
         pass
 
 
+class Task(ft.UserControl):
+    def __init__(self, taskName, taskDelete):
+        super().__init__()
+        self.taskName = taskName
+        self.taskDelete = taskDelete
+
+    def build(self):
+        self.displayTask = ft.Checkbox(label=self.taskName, value=False)
+        self.editName = ft.TextField()
+
+
 def main(page: ft.page):
     page.title = "Tasking app by aj"
     page.window_width = 500
     page.window_height = 700
     page.bgcolor = "BLACK"
+
+    taskingApp = TaskApp()
+    page.add(taskingApp)
 
 
 ft.app(tartget=main)
