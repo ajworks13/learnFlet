@@ -6,7 +6,7 @@ class TaskApp(ft.UserControl):
     def build(self):
         self.textField = ft.TextField(width=350)
         self.addBtn = ft.FloatingActionButton(
-            icon=ft.icon.ADD, on_click=self.addClick)
+            icon=ft.icons.ADD, on_click=self.addClick)
 
         self.task = ft.Column()
         taskRow = ft.Column(controls=[
@@ -16,7 +16,10 @@ class TaskApp(ft.UserControl):
         return taskRow
 
     def addClick(self, e):
-        pass
+        task = Task(self.textField.value, self.taskDelete)
+        self.task.controls.append(task)
+        self.textField.value = ""
+        self.update()
 
     def taskDelete(self, task):
         pass
@@ -31,19 +34,37 @@ class Task(ft.UserControl):
     def build(self):
         self.displayTask = ft.Checkbox(label=self.taskName, value=False)
         self.editName = ft.TextField()
+        self.displayView = ft.Row(controls=[self.displayTask, ft.Row(controls=[ft.IconButton(ft.icons.CREATE_OUTLINED, on_click=self.editClick),
+                                                                               ft.IconButton(ft.icons.DELETE_OUTLINE_OUTLINED, on_click=self.deleteClick)])])
+
+        self.editView = ft.Row(visible=False,
+                               controls=[self.editName, ft.IconButton(ft.icons.DELETE_OUTLINED, on_click=self.saveClick)])
+
+        return ft.Column(controls=[self.displayView, self.editView])
+
+    def editClick(self, e):
+        self.displayView.visible = False
+        self.editView.visible = True
+        self.editName.value = self.displayTask.label
+
+    def saveClick(self, e):
+        pass
+
+    def deleteClick(self, e):
+        pass
 
 
 def main(page: ft.page):
     page.title = "Tasking app by aj"
     page.window_width = 500
     page.window_height = 700
-    page.bgcolor = "BLACK"
+    page.bgcolor = "WHITE"
 
     taskingApp = TaskApp()
     page.add(taskingApp)
 
 
-ft.app(tartget=main)
+ft.app(target=main)
 
 
 # def main(page: ft.page):
